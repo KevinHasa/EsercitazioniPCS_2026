@@ -1,0 +1,12 @@
+Misurando i tempi, compilando il codice in Debug e in Release, Ho notato che i tempi sono molto diversi a seconda del metodo utilizzato, 
+infatti in Release tutti gli algoritmi in generale risultano essere più veloci.
+Per quanto riguarda gli algoritmi in sè, ho notato che, indipendentemente dal tipo di compilazione, si ha che insertionsort è il più veloce
+tra gli algoritmi quadratici, ovvero con complessità in tempo O(n^2), mentre quicksort risulta essere quello più veloce tra gli algoritmi logaritmici, 
+ovvero con complessità O(nlogn). 
+In base al tipo di compilazione ho inoltre notato che:
+- in Debug quicksort era più veloce di insertionsort da una dimensione dei vettori di 50-60 elementi;
+- in Release quicksort era più veloce di insertionsort solo da una dimensione dei vettori di 210-220 elementi.
+Quindi è stato ragionevole modificare il quicksort implementando un algoritmo (chiamato modified_quicksort) che, presa per buona la soglia del Release 
+al posto di quella del Debug, operasse attraverso l'insertionsort al di sotto di tale soglia (210 elementi) e attraverso il quicksort al di sopra di questa soglia. 
+Il risultato è stato che, a parte qualche caso isolato, il nuovo algoritmo era più veloce degli altri due (o ugualmente veloce), ma ancora meno di std::sort più che
+altro in vettori di dimensioni superiori ai 130 circa.
